@@ -1,13 +1,24 @@
 <script>
   import { FilmStore } from "../../../film-store";
   import { goto } from "$app/navigation";
+  import "bootstrap/dist/css/bootstrap.min.css";
 
   let name = "";
   let director = "";
   let description = "";
   let files;
+  let showInvalidMessage = false;
+
+  let validFields = () => {
+    return name.length > 4 && director.length > 3 && description.length > 10;
+  };
 
   let handleSubmit = () => {
+    if (!validFields()) {
+      showInvalidMessage = true;
+      return;
+    }
+
     const endpoint = "http://localhost:8000/api/films/";
     let data = new FormData();
     data.append("name", name);
@@ -27,7 +38,9 @@
 
 <div>
   <h2 class="my-4">Add a Film</h2>
-
+  {#if showInvalidMessage}
+    <h4 class="text-danger">Form data is not valid</h4>
+  {/if}
   <div class="col-12 col-md-6">
     <form on:submit|preventDefault={handleSubmit}>
       <div class="mb-3">

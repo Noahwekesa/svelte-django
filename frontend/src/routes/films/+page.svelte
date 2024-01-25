@@ -1,10 +1,15 @@
 <script>
   import { FilmStore } from "../../film-store";
-  let handleClick = () =>
-    FilmStore.update((prev) => {
-      let newFilm = { id: 3, name: "Drive", director: "Nicolas winding refn" };
-      return [...prev, newFilm];
-    });
+  import { onMount } from "svelte";
+
+  onMount(async function () {
+    if (!$FilmStore.length) {
+      const endpoint = "http://localhost:8000/api/films/";
+      const response = await fetch(endpoint);
+      const data = await response.json();
+      FilmStore.set(data);
+    }
+  });
 </script>
 
 <div>
@@ -17,7 +22,7 @@
           <img
             class="card-img-top"
             style="height: 300px; object-fit: cover"
-            src=""
+            src={film.image}
             alt="Film"
           />
           <div

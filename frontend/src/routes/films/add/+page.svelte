@@ -8,7 +8,7 @@
   let files;
 
   let handleSubmit = () => {
-    const endpoint = "http:localhost:8000/api/films";
+    const endpoint = "http://localhost:8000/api/films/";
     let data = new FormData();
     data.append("name", name);
     data.append("director", director);
@@ -18,7 +18,7 @@
     fetch(endpoint, { method: "POST", body: data })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        FilmStore.update((prev) => [...prev, data]);
       });
 
     goto("/films/");

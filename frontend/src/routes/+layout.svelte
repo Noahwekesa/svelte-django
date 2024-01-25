@@ -1,10 +1,9 @@
 <script>
   import "./styles.css";
-  import "bootstrap/dist/css/bootstrap.min.css";
 </script>
 
 <div class="app">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar shadow-lg navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">Low Budget letterboxd</a>
       <button
@@ -20,9 +19,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="/films">Films</a>
           </li>
@@ -43,6 +39,12 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Azonix";
   }
 
   main {
